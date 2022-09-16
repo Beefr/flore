@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="fr" >
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			ANOG
+		</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/indexStyle.css')}}"> 
+		<link rel="shortcut icon" href="{{ url_for('static', filename='flag.png') }}">
+	</head>
+	<body>
+		<div id="bg"></div>
+
+
+        <div id="index">
+		
+            <div id="header" class="row textField">
+                ANOG: Another Neat Onepiece Game - by Corentin RENAULT
+                <a href={{url_for("logout")}}> Logout</a>
+                <a href={{url_for("createGame", username=current_user.username)}}> Menu</a>
+            </div>
+
+            <div id="middle" class="row">
+                
+                <div id="left-bar" class="textField scrollable">
+                    {% block left %}{% endblock %}
+
+                    
+                </div>
+                
+                <div id="content" class="textField scrollable">
+                  
+                    {% block content %}{% endblock %}
+                
+                    <p>
+
+                        <form action="{{ url_for('handle_data') }}" method="post" autocomplete="off">
+                            <div class="form-field">
+                                {{ form.user_input(placeholder="Votre choix, exemple: 0", class='input') }}
+                            </div>
+                            <div class="form-field">
+                                {{ form.submit(class='btn') }}
+                            </div>
+                            
+                        </form>
+                        
+                    </p>
+                
+                </div>                
+                
+                <div id="right-bar" class="textField scrollable">
+                  
+                    {% block right %}{% endblock %}
+                    
+                </div>
+            </div>
+        </div>
+	</body>
+</html>

@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+<! --
+{% if current_user.is_authenticated %}
+  Hi {{ current_user.username }}!
+{% endif %}
+-->
+
+{% block left %}
+    {% for line in output.team.myMessages %}
+        
+        {% for team in line %}
+            {% if team.gras %}
+                <b>
+                    {% if team.couleur=='rouge' %}
+                        <FONT COLOR="color:rgb(160, 51, 0)">{{team.texte}}</FONT>
+                    {% else %}
+                        {{team.texte}}
+                    {% endif %}
+                </b>
+            {% else %}
+                {% if team.couleur=='rouge' %}
+                    <FONT COLOR="color:rgb(160, 51, 0)">{{team.texte}}</FONT>
+                {% else %}
+                    {{team.texte}}
+                {% endif %}
+            {% endif %}
+
+            {% if team.needRetourLigne %}
+                </br>
+            {% endif %}
+
+        {% endfor %}
+        </br>
+    {% endfor %}
+{% endblock %}
+
+
+
+{% block right %}
+    {% for line in output.map.myMessages %}
+        
+        {% for elem in line %}
+            {% if elem.gras %} <b> {% endif %}
+                {% if elem.couleur=='rouge' %} <FONT COLOR="color:rgb(160, 51, 0)"> {% endif %} 
+
+                    {{elem.texte}}
+
+                {% if elem.couleur=='rouge' %} </FONT> {% endif %} 
+            {% if elem.gras %} </b> {% endif %}   
+
+            {% if elem.needRetourLigne %}
+                </br>
+            {% endif %}
+        {% endfor %}
+        
+    {% endfor %}
+{% endblock %}
+
+
+
+{% block content %}
+    {% for line in output.content.myMessages %}
+        
+        {% for content in line %}
+            {% if content.gras %}
+                <b>
+                    {% if content.couleur=='rouge' %}
+                        <FONT COLOR="color:rgb(230, 103, 45)">{{content.texte}}</FONT>
+                    {% elif content.couleur=='vert' %}
+                        <FONT COLOR="color:rgb(19, 16, 202)">{{content.texte}}</FONT>
+                    {% else %}
+                        {{content.texte}}
+                    {% endif %}
+                </b>
+            {% else %}
+                {% if content.couleur=='rouge' %}
+                    <FONT COLOR="color:rgb(230, 103, 45)">{{content.texte}}</FONT>
+                {% elif content.couleur=='vert' %}
+                    <FONT COLOR="color:rgb(19, 16, 202)">{{content.texte}}</FONT>
+                {% else %}
+                    {{content.texte}}
+                {% endif %}
+            {% endif %}
+
+            {% if content.needRetourLigne %}
+                </br>
+            {% endif %}
+
+        {% endfor %}
+        </br>
+    {% endfor %}
+{% endblock %}
+
