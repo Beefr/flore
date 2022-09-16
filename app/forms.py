@@ -21,5 +21,17 @@ class RegisterForm(FlaskForm):
     password2 = PasswordField('Password', validators=[DataRequired(), Length(min=4, max=40)])
     submit = SubmitField('Valider')
 
+class LotForm(FlaskForm):
+    submit = SubmitField('Valider')
+
+class TrainForm(FlaskForm):
+    submit = SubmitField('Valider')
+
+class ApplicationForm(FlaskForm):
+    submit = SubmitField('Valider')
+
+class AnomalieForm(FlaskForm):
+    submit = SubmitField('Valider')
+
 
 

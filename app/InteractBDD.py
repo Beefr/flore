@@ -28,6 +28,10 @@ class InteractBDD(object):
     @staticmethod
     def checkPassword(username, password):
         return None
+    
+    @staticmethod
+    def createUser(username, password):
+        return None
 
 
     #____________________________________________________________

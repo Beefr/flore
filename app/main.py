@@ -6,8 +6,8 @@ print(pathlib.Path(__file__).parent.resolve())
 
 import hashlib
 
-import sys
-sys.path.insert(1, 'flore/workspace/python-pipeline/')
+#import sys
+#sys.path.insert(1, 'flore/workspace/python-pipeline/')
 
 try:
     from interactBDD import InteractBDD
@@ -16,7 +16,9 @@ except:
 
 from user import User, Anonymous
 
-from forms import LoginForm, IndexForm, RegisterForm
+from output import Output
+
+from forms import LoginForm, IndexForm, RegisterForm, LotForm, TrainForm, ApplicationForm, AnomalieForm
 
 login_manager = LoginManager()
 login_manager.anonymous_user = Anonymous
@@ -35,12 +37,7 @@ login_manager.init_app(app)
 
 @app.route("/handle_data", methods=['GET', 'POST'])
 def handle_data():
-    if "gameid" in request.form:
-        canjoin=InteractBDD.addUser(current_user.username, request.form['gameid'], False)
-        if canjoin:
-            return redirect(url_for('menu', username=current_user.username, user_input="None", gameid=request.form['gameid']))
-        # either the game doesnt exists(or is over), or the player already joined that game
-        return redirect(url_for('joinWithFriends', username=current_user.username))
+    
 
     if "password2" in request.form:
         if sanitization([request.form['username'], request.form['password1'], request.form['password2']]):
@@ -51,25 +48,63 @@ def handle_data():
 
     if "password" in request.form:
         checkPassword(request.form['username'], request.form['password'])
-        return redirect(url_for('createGame', username=current_user.username))
+        return redirect(url_for('menu', username=current_user.username, id=current_user.id))
     
     user_input="None"
     if "user_input" in request.form:
         user_input=request.form["user_input"]
 
     if current_user.is_authenticated:
-        current_user.gameid=request.cookies.get('gameid')
-        return redirect(url_for('menu', username=current_user.username, user_input=user_input, gameid=current_user.gameid))
+        current_user.id=request.cookies.get('id')
+        return redirect(url_for('menu', username=current_user.username, id=current_user.id, user_input=user_input))
         
     return redirect(url_for('login'))
 
-@app.route("/menu/<username>/<gameid>/<user_input>", methods=['GET','POST'])
+@app.route("/menu/<username>/<id>/<user_input>", methods=['GET','POST'])
 @login_required
-def menu(username, gameid, user_input="None"):
-    current_user.gameid=gameid
-    output = current_user.menu.showMenu(user_input)
-    resp= make_response(render_template('index.html', output=output, form=IndexForm(), username=username, gameid=gameid))
-    resp.set_cookie('gameid', gameid)
+def menu(username, id, user_input="None"):
+    current_user.id=id
+    output = Output.content
+    resp= make_response(render_template('index.html', output=output, form=IndexForm(), username=username, id=id))
+    resp.set_cookie('id', id)
+    return resp
+
+@app.route("/lots/<username>/<id>/<user_input>", methods=['GET','POST'])
+@login_required
+def lots(username, id, user_input="None"):
+    current_user.id=id
+    output = Output.content
+    resp= make_response(render_template('lots.html', output=output, form=LotForm(), username=username, id=id))
+    resp.set_cookie('id', id)
+    return resp
+
+@app.route("/trains/<username>/<id>/<user_input>", methods=['GET','POST'])
+@login_required
+def trains(username, id, user_input="None"):
+    current_user.id=id
+    output = Output.content
+    resp= make_response(render_template('trains.html', output=output, form=TrainForm(), username=username, id=id))
+    resp.set_cookie('id', id)
+    return resp
+
+    
+@app.route("/applications/<username>/<id>/<user_input>", methods=['GET','POST'])
+@login_required
+def applications(username, id, user_input="None"):
+    current_user.id=id
+    output = Output.content
+    resp= make_response(render_template('applications.html', output=output, form=ApplicationForm(), username=username, id=id))
+    resp.set_cookie('id', id)
+    return resp
+
+    
+@app.route("/anomalies/<username>/<id>/<user_input>", methods=['GET','POST'])
+@login_required
+def anomalies(username, id, user_input="None"):
+    current_user.id=id
+    output = Output.content
+    resp= make_response(render_template('anomalies.html', output=output, form=AnomalieForm(), username=username, id=id))
+    resp.set_cookie('id', id)
     return resp
     
 
@@ -89,7 +124,7 @@ def checkPassword(username, password):
 def page_not_found(error):
     print("page not found error")
     if current_user.is_authenticated:
-        return redirect(url_for('createGame', username=current_user.username))
+        return redirect(url_for('menu', username=current_user.username, id=current_user.id))
     else:
         return redirect(url_for('login'))
 
@@ -98,7 +133,7 @@ def page_not_found(error):
 def page_not_found(error):
     print("Internal Server Error")
     if current_user.is_authenticated:
-        return redirect(url_for('createGame', username=current_user.username))
+        return redirect(url_for('menu', username=current_user.username, id=current_user.id))
     else:
         return redirect(url_for('login'))
 
@@ -107,7 +142,7 @@ def page_not_found(error):
 def unauthorized():
     print("unauthorized action")
     if current_user.is_authenticated:
-        return redirect(url_for('createGame', username=current_user.username))
+        return redirect(url_for('menu', username=current_user.username, id=current_user.id))
     else:
         return redirect(url_for('login'))
 
@@ -117,7 +152,7 @@ def login():
         user_input="None"
         if "user_input" in request.form:
             user_input= request.form["user_input"]
-        return redirect(url_for('createGame', username=current_user.username))
+        return redirect(url_for('menu', username=current_user.username, user_input=user_input, id=current_user.id))
  
     return render_template('login.html', form=LoginForm())
 
@@ -128,7 +163,7 @@ def register():
         user_input="None"
         if "user_input" in request.form:
             user_input= request.form["user_input"]
-        return redirect(url_for('createGame', username=current_user.username))
+        return redirect(url_for('menu', username=current_user.username, user_input=user_input, id=current_user.id))
  
     return render_template('register.html', form=RegisterForm())
 

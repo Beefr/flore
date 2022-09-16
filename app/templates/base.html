@@ -4,10 +4,10 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			ANOG
+			Flore
 		</title>
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/indexStyle.css')}}"> 
-		<link rel="shortcut icon" href="{{ url_for('static', filename='flag.png') }}">
+		<link rel="shortcut icon" href="{{ url_for('static', filename='user-icon.png') }}">
 	</head>
 	<body>
 		<div id="bg"></div>
@@ -16,9 +16,12 @@
         <div id="index">
 		
             <div id="header" class="row textField">
-                ANOG: Another Neat Onepiece Game - by Corentin RENAULT
+                Flore - by Corentin RENAULT
                 <a href={{url_for("logout")}}> Logout</a>
-                <a href={{url_for("createGame", username=current_user.username)}}> Menu</a>
+                <a href={{url_for("lots", username=current_user.username)}}> Lots</a>
+                <a href={{url_for("trains", username=current_user.username)}}> Trains</a>
+                <a href={{url_for("applications", username=current_user.username)}}> Applications</a>
+                <a href={{url_for("anomalies", username=current_user.username)}}> Anomalies</a>
             </div>
 
             <div id="middle" class="row">
