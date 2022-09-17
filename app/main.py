@@ -99,7 +99,7 @@ def anomalies(username):
     return resp
     
     
-@app.route("/evolution/<username>/", methods=['GET','POST'])
+@app.route("/evolution/<username>/<application>/<train>/<couloir>/", methods=['GET','POST'])
 @login_required
 def evolution(username, application, train, couloir):
     ticket=Ticket(application, couloir, train)
