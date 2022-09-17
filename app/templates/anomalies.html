@@ -1,0 +1,42 @@
+{% extends "menu.html" %}
+
+<! --
+{% if current_user.is_authenticated %}
+  Hi {{ current_user.username }}!
+{% endif %}
+-->
+
+
+
+{% block account %}
+    {% if current_user.is_authenticated %}
+        Bonjour {{ current_user.username }}!
+    {% else %}
+        Veuillez vous connecter!
+    {% endif %}
+{% endblock %}
+
+
+
+{% block top %}
+    Des informations sur la page: [Train 22.11] [C02] [SYNAPSE]
+{% endblock %}
+
+
+
+{% block left %}
+    output["nom"]
+{% endblock %}
+
+
+
+{% block content %}
+    output["age"]
+{% endblock %}
+
+{% block right %}
+    output["prenom"]
+{% endblock %}
+
+
+
