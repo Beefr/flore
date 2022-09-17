@@ -22,15 +22,19 @@ class RegisterForm(FlaskForm):
     submit = SubmitField('Valider')
 
 class LotForm(FlaskForm):
+    user_input = StringField('user_input', validators=[DataRequired()])
     submit = SubmitField('Valider')
 
 class TrainForm(FlaskForm):
+    user_input = StringField('user_input', validators=[DataRequired()])
     submit = SubmitField('Valider')
 
 class ApplicationForm(FlaskForm):
+    user_input = StringField('user_input', validators=[DataRequired()])
     submit = SubmitField('Valider')
 
 class AnomalieForm(FlaskForm):
+    user_input = StringField('user_input', validators=[DataRequired()])
     submit = SubmitField('Valider')
 
 
