@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="fr" >
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			Flore
+		</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css')}}"> 
+		<link rel="shortcut icon" href="{{ url_for('static', filename='flag.png') }}">
+	</head>
+	<body>
+		<div id="bg"></div>
+
+
+        <div id="index">
+		
+            <div id="header" class="row textField">
+                Flore - by Corentin RENAULT
+                <a href={{url_for("logout")}}> Logout</a>
+                {% block account %}{% endblock %}
+                <a href={{url_for("lots", username=current_user.username)}}> Lots</a>
+                <a href={{url_for("trains", username=current_user.username)}}> Trains</a>
+                <a href={{url_for("applications", username=current_user.username)}}> Applications</a>
+                <a href={{url_for("anomalies", username=current_user.username)}}> Anomalies</a>
+            </div>
+
+            <div id="main_information">
+
+                {% block top %}{% endblock %}
+
+            </div>
+
+            <div id="middle" class="row">
+                
+                <div id="left-bar" class="textField scrollable">
+                    {% block left %}{% endblock %}
+
+                    
+                </div>
+                
+                <div id="content" class="textField scrollable">
+                  
+                    {% block content %}{% endblock %}
+                
+                </div>                
+                
+                <div id="right-bar" class="textField scrollable">
+                  
+                    {% block right %}{% endblock %}
+                    
+                </div>
+            </div>
+        </div>
+	</body>
+</html>
