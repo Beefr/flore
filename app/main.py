@@ -60,51 +60,42 @@ def handle_data():
         
     return redirect(url_for('login'))
 
-@app.route("/menu/<username>/<id>/<user_input>", methods=['GET','POST'])
+@app.route("/menu/<username>/", methods=['GET','POST'])
 @login_required
-def menu(username, id, user_input="None"):
-    current_user.id=id
+def menu(username):
     output = Output.content
-    resp= make_response(render_template('index.html', output=output, form=IndexForm(), username=username, id=id))
-    resp.set_cookie('id', id)
+    resp= make_response(render_template('index.html', output=output, form=IndexForm(), username=username))
     return resp
 
-@app.route("/lots/<username>/<id>/<user_input>", methods=['GET','POST'])
+@app.route("/lots/<username>", methods=['GET','POST'])
 @login_required
-def lots(username, id, user_input="None"):
-    current_user.id=id
+def lots(username):
     output = Output.content
-    resp= make_response(render_template('lots.html', output=output, form=LotForm(), username=username, id=id))
-    resp.set_cookie('id', id)
+    resp= make_response(render_template('lots.html', output=output, form=LotForm(), username=username))
+    #resp.set_cookie('id', id)
     return resp
 
-@app.route("/trains/<username>/<id>/<user_input>", methods=['GET','POST'])
+@app.route("/trains/<username>/", methods=['GET','POST'])
 @login_required
-def trains(username, id, user_input="None"):
-    current_user.id=id
+def trains(username):
     output = Output.content
-    resp= make_response(render_template('trains.html', output=output, form=TrainForm(), username=username, id=id))
-    resp.set_cookie('id', id)
+    resp= make_response(render_template('trains.html', output=output, form=TrainForm(), username=username))
     return resp
 
     
-@app.route("/applications/<username>/<id>/<user_input>", methods=['GET','POST'])
+@app.route("/applications/<username>/", methods=['GET','POST'])
 @login_required
-def applications(username, id, user_input="None"):
-    current_user.id=id
+def applications(username):
     output = Output.content
-    resp= make_response(render_template('applications.html', output=output, form=ApplicationForm(), username=username, id=id))
-    resp.set_cookie('id', id)
+    resp= make_response(render_template('applications.html', output=output, form=ApplicationForm(), username=username))
     return resp
 
     
-@app.route("/anomalies/<username>/<id>/<user_input>", methods=['GET','POST'])
+@app.route("/anomalies/<username>/", methods=['GET','POST'])
 @login_required
-def anomalies(username, id, user_input="None"):
-    current_user.id=id
+def anomalies(username):
     output = Output.content
-    resp= make_response(render_template('anomalies.html', output=output, form=AnomalieForm(), username=username, id=id))
-    resp.set_cookie('id', id)
+    resp= make_response(render_template('anomalies.html', output=output, form=AnomalieForm(), username=username))
     return resp
     
 
