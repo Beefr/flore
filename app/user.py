@@ -38,7 +38,7 @@ class User(UserMixin):
 
 
     @id.setter
-    def gameid(self, gid):
+    def id(self, gid):
         self._id=gid
         
 
