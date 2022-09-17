@@ -17,12 +17,8 @@
 		
             <div id="header" class="row textField">
                 Flore - by Corentin RENAULT
-                <a href={{url_for("logout")}}> Logout</a>
                 {% block account %}{% endblock %}
-                <a href={{url_for("lots", username=current_user.username)}}> Lots</a>
-                <a href={{url_for("trains", username=current_user.username)}}> Trains</a>
-                <a href={{url_for("applications", username=current_user.username)}}> Applications</a>
-                <a href={{url_for("anomalies", username=current_user.username)}}> Anomalies</a>
+                
             </div>
 
             <div id="main_information">
