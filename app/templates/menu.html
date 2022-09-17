@@ -7,7 +7,7 @@
 			Flore
 		</title>
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/indexStyle.css')}}"> 
-		<link rel="shortcut icon" href="{{ url_for('static', filename='user-icon.png') }}">
+		<link rel="shortcut icon" href="{{ url_for('static', filename='flag.png') }}">
 	</head>
 	<body>
 		<div id="bg"></div>
@@ -18,10 +18,17 @@
             <div id="header" class="row textField">
                 Flore - by Corentin RENAULT
                 <a href={{url_for("logout")}}> Logout</a>
+                {% block account %}{% endblock %}
                 <a href={{url_for("lots", username=current_user.username)}}> Lots</a>
                 <a href={{url_for("trains", username=current_user.username)}}> Trains</a>
                 <a href={{url_for("applications", username=current_user.username)}}> Applications</a>
                 <a href={{url_for("anomalies", username=current_user.username)}}> Anomalies</a>
+            </div>
+
+            <div id="main_information">
+
+                {% block top %}{% endblock %}
+
             </div>
 
             <div id="middle" class="row">
@@ -40,7 +47,7 @@
 
                         <form action="{{ url_for('handle_data') }}" method="post" autocomplete="off">
                             <div class="form-field">
-                                {{ form.user_input(placeholder="Votre choix, exemple: 0", class='input') }}
+                                {{ form.user_input(placeholder="Ajouter un commentaire", class='input') }}
                             </div>
                             <div class="form-field">
                                 {{ form.submit(class='btn') }}
