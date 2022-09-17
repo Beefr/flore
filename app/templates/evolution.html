@@ -1,12 +1,5 @@
 {% extends "menu.html" %}
 
-<! --
-{% if current_user.is_authenticated %}
-  Hi {{ current_user.username }}!
-{% endif %}
--->
-
-
 
 {% block account %}
     {% if current_user.is_authenticated %}
@@ -19,19 +12,19 @@
 
 
 {% block top %}
-    Des informations sur la page: [Train 22.11] [C02] [SYNAPSE]
+    [Train {{ticket.train}}] [{{ticket.couloir}}] [{{ticket.application}}]
 {% endblock %}
 
 
 
 {% block left %}
-    output["nom"]
+    <a href={{url_for("evolution", username=current_user.username, application=ticket.application, train=ticket.train, couloir=ticket.couloir )}}> Ticket Guichet</a>
 {% endblock %}
 
 
 
 {% block content %}
-    <a href={{url_for("evolution", username=current_user.username, application=ticket.application, train=ticket.train, couloir=ticket.couloir )}}> Ticket Guichet</a>
+    output["age"]
 {% endblock %}
 
 {% block right %}

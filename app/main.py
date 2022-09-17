@@ -6,8 +6,6 @@ print(pathlib.Path(__file__).parent.resolve())
 
 import hashlib
 
-#import sys
-#sys.path.insert(1, 'flore/workspace/python-pipeline/')
 
 try:
     from interactBDD import InteractBDD
@@ -17,8 +15,9 @@ except:
 from user import User, Anonymous
 
 from output import Output
+from ticket import Ticket
 
-from forms import LoginForm, IndexForm, RegisterForm, LotForm, TrainForm, ApplicationForm, AnomalieForm
+from forms import LoginForm, IndexForm, RegisterForm, LotForm, TrainForm, ApplicationForm, AnomalieForm, EvolutionForm
 
 login_manager = LoginManager()
 login_manager.anonymous_user = Anonymous
@@ -64,7 +63,8 @@ def handle_data():
 @login_required
 def menu(username):
     output = Output.content
-    resp= make_response(render_template('index.html', output=output, form=IndexForm(), username=username))
+    ticket=Ticket("REI", "C02", "22.11")
+    resp= make_response(render_template('index.html', output=output, form=IndexForm(), username=username, ticket=ticket))
     return resp
 
 @app.route("/lots/<username>", methods=['GET','POST'])
@@ -96,6 +96,14 @@ def applications(username):
 def anomalies(username):
     output = Output.content
     resp= make_response(render_template('anomalies.html', output=output, form=AnomalieForm(), username=username))
+    return resp
+    
+    
+@app.route("/evolution/<username>/", methods=['GET','POST'])
+@login_required
+def evolution(username, ticket, application, train, couloir):
+    ticket=Ticket(application, couloir, train)
+    resp= make_response(render_template('evolution.html', form=EvolutionForm(), username=username, ticket=ticket))
     return resp
     
 

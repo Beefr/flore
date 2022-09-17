@@ -37,5 +37,9 @@ class AnomalieForm(FlaskForm):
     user_input = StringField('user_input', validators=[DataRequired()])
     submit = SubmitField('Valider')
 
+class EvolutionForm(FlaskForm):
+    user_input = StringField('user_input', validators=[DataRequired()])
+    submit = SubmitField('Valider')
+
 
 
