@@ -1,0 +1,4 @@
+CREATE DATABASE data;
+use data;
+
+CREATE TABLE utilisateur(username varchar(20) PRIMARY KEY NOT NULL, password varchar(20));

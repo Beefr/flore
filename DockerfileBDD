@@ -1,0 +1,20 @@
+
+FROM beefr/mariadb-qcm:latest
+
+EXPOSE 3306
+
+
+  volumes:
+  - name: anog-volume
+    persistentVolumeClaim:
+      claimName: anog-pvc
+
+
+    env:
+      - name: MYSQL_ROOT_PASSWORD
+        value: pwd
+    volumeMounts:
+    - mountPath: /var/lib/mysql
+      name: anog-volume
+
+      #docker run -ti --name mariadb -e MYSQL_ROOT_PASSWORD=pwd -p 3306:3306 -d beefr/mariadb-qcm:latest

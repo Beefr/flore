@@ -8,7 +8,7 @@ except:
 class PoolOfRequests(object):
 
 	config = {
-	    'host': 'mariadb-anog-service',
+	    'host': 'mariadb',
 	    'port': 3306,
 	    'user': 'root',
 	    'password': 'pwd',
