@@ -99,10 +99,10 @@ def anomalies(username):
     return resp
     
     
-@app.route("/evolution/<username>/<application>/<train>/<couloir>/", methods=['GET','POST'])
+@app.route("/evolution/<username>/<application>/<train>/<couloir>/<typeTicket>", methods=['GET','POST'])
 @login_required
-def evolution(username, application, train, couloir):
-    ticket=Ticket(application, couloir, train)
+def evolution(username, application, train, couloir, typeTicket):
+    ticket=Ticket(application, couloir, typeTicket, train)
     resp= make_response(render_template('evolution.html', form=EvolutionForm(), username=username, ticket=ticket))
     return resp
     

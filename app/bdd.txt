@@ -3,8 +3,8 @@ use data;
 
 CREATE TABLE utilisateur(username varchar(20) PRIMARY KEY NOT NULL, password varchar(20) NOT NULL);
 CREATE TABLE application(appli_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, appli varchar(20) NOT NULL, couloir varchar(20) NOT NULL, integration_version varchar(20) NOT NULL, validation_version varchar(20) NOT NULL, preproduction_version varchar(20) NOT NULL, production_version varchar(20) NOT NULL);
-CREATE TABLE train(id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, appli varchar(20) NOT NULL, value_train varchar(20));
-CREATE TABLE ticket(id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, type_ticket varchar(20) NOT NULL, appli varchar(20) NOT NULL, priorite varchar(20) NOT NULL, statut varchar(20) NOT NULL, assignation varchar(20) NOT NULL, echeance varchar(20) NOT NULL);
+CREATE TABLE train(id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, appli varchar(20) NOT NULL, value_train varchar(20), priorite varchar(20) NOT NULL, current_step varchar(20) NOT NULL);
+CREATE TABLE etape(id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, type_ticket varchar(20) NOT NULL, appli varchar(20) NOT NULL, value_train varchar(20), statut varchar(20) NOT NULL, assignation varchar(20) NOT NULL, echeance varchar(20) NOT NULL);
 
 
 
@@ -14,12 +14,13 @@ INSERT INTO `application` (`appli`, `couloir`, `integration_version`, `validatio
 INSERT INTO `application` (`appli`, `couloir`, `integration_version`, `validation_version`, `preproduction_version`, `production_version`) VALUES ('SAT-MDR', 'C02', '12.1.1.9','12.1.1.8','12.1.1.7','12.1.1.7');
 
 
-INSERT INTO `train` (`appli`, `value_train`) VALUES ('REI', '22.09');
-INSERT INTO `train` (`appli`, `value_train`) VALUES ('MDR', '22.10');
-INSERT INTO `train` (`appli`, `value_train`) VALUES ('SAT-MDR', '22.11');
+INSERT INTO `train` (`appli`, `value_train`, `priorite`) VALUES ('REI', '22.09', 'normale');
+INSERT INTO `train` (`appli`, `value_train`, `priorite`) VALUES ('MDR', '22.10', 'normale');
+INSERT INTO `train` (`appli`, `value_train`, `priorite`) VALUES ('SAT-MDR', '22.11', 'urgente');
 
 
 
+INSERT INTO `ticket` (`type_ticket`, `appli`, `statut`, `assignation`, `echeance`) VALUES ('guichet', 'REI');
 
 
 

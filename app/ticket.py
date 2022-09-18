@@ -3,10 +3,11 @@
 class Ticket(object):
 
 
-    def __init__(self, application, couloir, train=None):
+    def __init__(self, application, couloir, typeTicket, train=None):
         self._application= application
         self._couloir= couloir
         self._train= train
+        self._typeTicket=typeTicket
         # il faut aller chercher les autres datas dans la BDD à partir de ces trois infos
 
     @property
@@ -26,6 +27,15 @@ class Ticket(object):
     @couloir.setter
     def couloir(self, couloir):
         self._couloir=couloir
+
+    @property
+    def typeTicket(self):
+        return self._typeTicket
+
+  
+    @typeTicket.setter
+    def typeTicket(self, typeTicket):
+        self._typeTicket=typeTicket
 
     @property
     def train(self):

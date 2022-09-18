@@ -31,7 +31,7 @@
 
 
 {% block content %}
-    <a href={{url_for("evolution", username=current_user.username, application=ticket.application, train=ticket.train, couloir=ticket.couloir )}}> Ticket Guichet</a>
+    <a href={{url_for("evolution", username=current_user.username, application=ticket.application, train=ticket.train, couloir=ticket.couloir, type="guichet"  )}}> Ticket Guichet</a>
 {% endblock %}
 
 {% block right %}

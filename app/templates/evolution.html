@@ -18,7 +18,16 @@
 
 
 {% block left %}
-    <a href={{url_for("evolution", username=current_user.username, application=ticket.application, train=ticket.train, couloir=ticket.couloir )}}> Ticket Guichet</a>
+    <a href={{url_for("evolution", username=current_user.username, application=ticket.application, train=ticket.train, couloir=ticket.couloir, type="guichet" )}}> Ticket Guichet</a>
+    <a href={{url_for("evolution", username=current_user.username, application=ticket.application, train=ticket.train, couloir=ticket.couloir, type="MEI"  )}}> InfoSNP de MEI</a>
+    <a href={{url_for("evolution", username=current_user.username, application=ticket.application, train=ticket.train, couloir=ticket.couloir, type="chapeau"  )}}> Ticket Chapeau</a>
+    <a href={{url_for("evolution", username=current_user.username, application=ticket.application, train=ticket.train, couloir=ticket.couloir, type="GIIN"  )}}> Ticket GIIN</a>
+    <a href={{url_for("evolution", username=current_user.username, application=ticket.application, train=ticket.train, couloir=ticket.couloir, type="GIVN"  )}}> Ticket GIVN</a>
+    <a href={{url_for("evolution", username=current_user.username, application=ticket.application, train=ticket.train, couloir=ticket.couloir, type="MEV"  )}}> InfoSNP de MEV</a>
+    <a href={{url_for("evolution", username=current_user.username, application=ticket.application, train=ticket.train, couloir=ticket.couloir, type="GIPN"  )}}> Ticket GIPN</a>
+    <a href={{url_for("evolution", username=current_user.username, application=ticket.application, train=ticket.train, couloir=ticket.couloir, type="MEP"  )}}> InfoSNP de MEP</a>
+    <a href={{url_for("evolution", username=current_user.username, application=ticket.application, train=ticket.train, couloir=ticket.couloir, type="MàN"  )}}> Ticket MàN</a>
+
 {% endblock %}
 
 
